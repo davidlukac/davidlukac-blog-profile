@@ -1,0 +1,12 @@
+name = David's Blog install profile.
+description = Experimental installation profile used to build up a blog that belongs to David Lukac.
+version = 0.1.0
+core = 7.x
+exclusive = true
+
+; Dependencies coming from the 'minimal' installation profile .
+dependencies[] = block
+dependencies[] = dblog
+
+; Our own dependencies.
+dependencies[] = blog

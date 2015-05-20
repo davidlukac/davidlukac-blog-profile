@@ -1,0 +1,30 @@
+<?php
+/**
+ * @file
+ * File 'davids_blog.install - Profile installation file.
+ *
+ * Install, update and uninstall functions for the David's blog installation
+ * profile.
+ */
+
+/**
+ * Implements hook_install().
+ *
+ * Perform actions to set up the site for this profile.
+ */
+function davids_blog_install() {
+  /* Let's perform minimal Drupal installation - we'll do our customisations
+  afterwards */
+  include_once DRUPAL_ROOT . '/profiles/minimal/minimal.install';
+  minimal_install();
+
+  // We don't allow visitors to register on the site.
+  variable_set('user_register', USER_REGISTER_ADMINISTRATORS_ONLY);
+
+  // We need to alternate some of the 'Blog' content type settings.
+  // Preview before publishing is going to be mandatory.
+  variable_set('node_preview_blog', 2);
+  // We want new blog posts to be published, promoted on the front and new
+  // revisions are mandatory.
+  variable_set('node_options_blog', array('status', 'promote', 'revision'));
+}
