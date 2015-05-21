@@ -1,2 +1,13 @@
-Release 1
-------------------------------------------------
+[DavidLukac.com Installation profile - v0.1.0 (2015-05-21)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.1.0)
+--------------------------------------------------------------------------------
+- Installation profile based on Drupal 7 'Minimal' installation prfile.
+- "David's Blog" profile is made the default and exclusive one.
+- Only administrator can create new user accounts.
+- Site name is set to "Blog of David Lukac" during installation.
+- Site email is set to "david.lukac [at] gmail.com" during installation.
+- Module "Blog" is enabled.
+- Blog content type publishing settings:
+  - preview before publishing is mandatory,
+  - new content is saved as published,
+  - new content is saved as promoted to the front page,
+  - new revision is created at each content save.
