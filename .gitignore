@@ -13,3 +13,4 @@ sites/*/private
 
 # Ignore IDE files.
 .idea
+.secure

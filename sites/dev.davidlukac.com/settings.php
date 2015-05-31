@@ -569,5 +569,5 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 /**
  * Include environment specific settings.
  */
-define('CUSTOM_CONFIG_ENV', 'PROD');
+define('CUSTOM_CONFIG_ENV', 'DEV');
 require DRUPAL_ROOT . '/profiles/davids_blog/config/config.php';
