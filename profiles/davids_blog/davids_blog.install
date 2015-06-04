@@ -28,3 +28,40 @@ function davids_blog_install() {
   // revisions are mandatory.
   variable_set('node_options_blog', array('status', 'promote', 'revision'));
 }
+
+/**
+ * Implements hook_form_FORM_ID_alter() for install_configure_form().
+ *
+ * Allows the profile to alter the site configuration form.
+ *
+ * @inheritdoc
+ */
+function davids_blog_form_install_configure_form_alter(&$form, $form_state) {
+  $form['site_information']['site_name']['#default_value'] = 'Blog of David Lukac';
+  $form['site_information']['site_mail']['#default_value'] = 'david.lukac@gmail.com';
+  $form['admin_account']['account']['name']['#default_value'] = 'superdivide';
+  $form['admin_account']['account']['mail']['#default_value'] = 'david.lukac@gmail.com';
+  $form['admin_account']['account']['pass']['#type'] = 'hidden';
+  $form['admin_account']['account']['pass']['#required'] = FALSE;
+  $form['server_settings']['site_default_country']['#default_value'] = 'SK';
+  $form['server_settings']['date_default_timezone']['#default_value'] = "Europe/Bratislava";
+  $form['server_settings']['date_default_timezone']['#attributes'] = NULL;
+  $form['update_notifications']['update_status_module']['#default_value'] = array(0, 0);
+}
+
+/**
+ * Post- installation tasks.
+ */
+function davids_blog_site_post_install() {
+  if ($_SERVER['SERVER_NAME'] == 'dev.davidlukac.com') {
+    if (module_enable(array('shield'), TRUE)) {
+      watchdog('davids_blog', "Post- installation development environment modules enabled successfully.", array(), WATCHDOG_NOTICE, NULL);
+      variable_set('shield_user', 'shield');
+      variable_set('shield_pass', 'ShieldSecret');
+      variable_set('shield_print', "Hello, please enter Shield Secret credentials!");
+    }
+    else {
+      watchdog('davids_blog', "Enabling post- installation development environment modules failed.", array(), WATCHDOG_NOTICE, NULL);
+    }
+  }
+}
