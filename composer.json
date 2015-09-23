@@ -1,0 +1,12 @@
+{
+    "name": "davidlukac/personal-blog-install-profile",
+    "description": "Drupal 7 based installation profile for personal blog.",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "David Lukac",
+            "email": "david.lukac@gmail.com"
+        }
+    ],
+    "require": {}
+}
