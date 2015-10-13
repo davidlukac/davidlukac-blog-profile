@@ -62,6 +62,6 @@
 // Local DevDesktop environment.
 $sites['8083.davidlukac.dd'] = 'davidlukac.dd';
 // Dev environment on Websupport.
-$sites['dev.davidlukac.com'] = 'davidlukac.com';
+$sites['dev.davidlukac.com'] = 'dev.davidlukac.com';
 // Live environment.
 $sites['davidlukac.com'] = 'davidlukac.com';
