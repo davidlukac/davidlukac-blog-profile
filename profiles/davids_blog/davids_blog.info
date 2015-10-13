@@ -5,8 +5,8 @@ core = 7.x
 exclusive = true
 
 ; Dependencies coming from the 'minimal' installation profile .
-dependencies[] = block
 dependencies[] = dblog
+dependencies[] = block
 
-; Our own dependencies.
+; Our own minimal dependencies.
 dependencies[] = blog

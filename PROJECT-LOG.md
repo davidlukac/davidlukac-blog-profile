@@ -1,3 +1,8 @@
+[DavidLukac.com Installation profile - v0.2.0 (2015-10-14)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.2.0)
+--------------------------------------------------------------------------------
+- Issue #3 - Added settings handling for LIVE (http://Websupport.sk)
+  environment.
+
 [DavidLukac.com Installation profile - v0.1.0 (2015-05-21)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.1.0)
 --------------------------------------------------------------------------------
 - Installation profile based on Drupal 7 'Minimal' installation prfile.

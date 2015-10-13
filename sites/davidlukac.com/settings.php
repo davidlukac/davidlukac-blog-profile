@@ -566,5 +566,8 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
  */
 # $conf['allow_authorize_operations'] = FALSE;
 
-// Include our secret settings here.
-include DRUPAL_ROOT . '/../../../secure/prod/settings.prod.php'
+/**
+ * Include environment specific settings.
+ */
+define('CUSTOM_CONFIG_ENV', 'PROD');
+require DRUPAL_ROOT . '/profiles/davids_blog/config/config.php';
