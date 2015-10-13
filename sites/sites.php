@@ -4,8 +4,8 @@
  * @file
  * Configuration file for Drupal's multi-site directory aliasing feature.
  *
- * This file allows you to define a set of aliases that map hostnames, ports, and
- * pathnames to configuration directories in the sites directory. These aliases
+ * This file allows you to define a set of aliases that map hostnames, ports and
+ * path names to configuration directories in the sites directory. These aliases
  * are loaded prior to scanning for directories, and they are exempt from the
  * normal discovery rules. See default.settings.php to view how Drupal discovers
  * the configuration directory when no alias is found.
@@ -23,18 +23,23 @@
  * written in the format: '<port>.<domain>.<path>' => 'directory'. As an
  * example, to map http://www.drupal.org:8080/mysite/test to the configuration
  * directory sites/example.com, the array should be defined as:
+ *
  * @code
  * $sites = array(
  *   '8080.www.drupal.org.mysite.test' => 'example.com',
  * );
  * @endcode
+ *
  * The URL, http://www.drupal.org:8080/mysite/test/, could be a symbolic link or
  * an Apache Alias directive that points to the Drupal root containing
  * index.php. An alias could also be created for a subdomain. See the
+ *
  * @link http://drupal.org/documentation/install online Drupal installation guide @endlink
+ *
  * for more information on setting up domains, subdomains, and subdirectories.
  *
  * The following examples look for a site configuration in sites/example.com:
+ *
  * @code
  * URL: http://dev.drupal.org
  * $sites['dev.drupal.org'] = 'example.com';
@@ -53,3 +58,10 @@
  * @see conf_path()
  * @see http://drupal.org/documentation/install/multi-site
  */
+
+// Local DevDesktop environment.
+$sites['8083.davidlukac.dd'] = 'davidlukac.dd';
+// Dev environment on Websupport.
+$sites['dev.davidlukac.com'] = 'davidlukac.com';
+// Live environment.
+$sites['davidlukac.com'] = 'davidlukac.com';
