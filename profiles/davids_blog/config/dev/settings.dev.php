@@ -4,4 +4,5 @@
  * File settings.php for development environment.
  */
 
-define('CUSTOM_CONFIG_SECURE_ROOT', DRUPAL_ROOT . '/../..');
+// Specify where's the secure folder located.
+define('CUSTOM_CONFIG_SECURE_ROOT', DRUPAL_ROOT . '/../../secure');
