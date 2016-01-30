@@ -1,7 +1,7 @@
 <?php
 /**
  * @file
- * File settings.php for PRODUCTION environment.
+ * File settings.php for PRODUCTION environment via Shell server.
  */
 
 // Specify where's the secure folder located.
