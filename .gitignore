@@ -17,3 +17,4 @@ sites/*/private
 
 # Composer.
 /vendor/
+.secure-bak
