@@ -53,7 +53,7 @@
  */
 
 /**
- * Database settings.
+ * Database settings:
  *
  * The $databases array specifies the database connection or
  * connections that Drupal may use.  Drupal is able to connect
@@ -62,7 +62,6 @@
  *
  * Each database connection is specified as an array of settings,
  * similar to the following:
- *
  * @code
  * array(
  *   'driver' => 'mysql',
@@ -100,7 +99,6 @@
  * fall back to the single master server.
  *
  * The general format for the $databases array is as follows:
- *
  * @code
  * $databases['default']['default'] = $info_array;
  * $databases['default']['slave'][] = $info_array;
@@ -135,11 +133,9 @@
  * are desired, leave it as an empty string ''.
  *
  * To have all database names prefixed, set 'prefix' as a string:
- *
  * @code
  *   'prefix' => 'main_',
  * @endcode
- *
  * To provide prefixes for specific tables, set 'prefix' as an array.
  * The array's keys are the table names and the values are the prefixes.
  * The 'default' element is mandatory and holds the prefix for any tables
@@ -573,5 +569,5 @@ $conf['404_fast_html'] = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
 /**
  * Include environment specific settings.
  */
-define('CUSTOM_CONFIG_ENV', 'PROD');
+define('CUSTOM_CONFIG_ENV', 'PROD-DRUSH');
 require DRUPAL_ROOT . '/profiles/davids_blog/config/config.php';
