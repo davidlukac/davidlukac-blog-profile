@@ -5,3 +5,31 @@
  */
 
 include_once 'ft_site_administration.features.inc';
+
+/**
+ * Implements hook_post_features_enable_feature().
+ *
+ * Enable `Adminimal` theme when enabling this feature.
+ *
+ * @inheritdoc
+ */
+function ft_site_administration_post_features_enable_feature($component) {
+  // When we get to enabling the Strongarm variables for this Feature,
+  // make sure the theme is enabled and it's settings are reverted afterwards,
+  // so they are applied correctly.
+  if ($component == 'variable') {
+    $theme_name = 'adminimal';
+    theme_enable(array($theme_name));
+    drupal_theme_rebuild();
+    features_revert(array('ft_site_administration' => array($component)));
+    watchdog("ft_site_administration", "Attempted to enable the Adminimal theme.", array(), WATCHDOG_INFO);
+
+    $themes = list_themes(TRUE);
+    if (array_key_exists($theme_name, $themes)) {
+      watchdog("ft_site_administration", "Adminimal theme enabled successfully.", array(), WATCHDOG_INFO);
+    }
+    else {
+      watchdog("ft_site_administration", "The Adminimal theme is not present. Requested: '%req'.", array('%req' => $theme_name), WATCHDOG_ERROR);
+    }
+  }
+}
