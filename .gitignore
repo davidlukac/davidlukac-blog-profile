@@ -13,7 +13,11 @@ sites/*/private
 
 # Ignore IDE files.
 .idea
+
+# Ignore other secret folders.
 .secure
+.secure-bak
+secret
 
 # Composer.
 /vendor/
