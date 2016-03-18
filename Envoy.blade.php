@@ -26,7 +26,22 @@
     cd davidlukac.com/sub/dev/
     git checkout develop
     git pull
-    drush @dev.davidlukac.com status
+
+    CMD="drush @ws.dev status"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.dev updb"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.dev cc all"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.dev cron"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
 @endtask
 
 @task('drush-check', ['on' => 'ws'])
@@ -38,13 +53,15 @@
     echo "Drush commands in DEV:"
     drush sa
     echo '================================================================================'
-    {{--drush @dl.dev status--}}
+    CMD="drush @ws.dev status"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
 
     cd \${INIT_DIR}/davidlukac.com/web
     echo "Drush commands in PROD:"
     drush sa
     echo '================================================================================'
-    CMD="drush @dl.prod status"
+    CMD="drush @ws.prod status"
     echo "Running: '\${CMD}'."
     eval \${CMD}
 @endtask

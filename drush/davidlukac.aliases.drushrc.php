@@ -17,10 +17,12 @@ $hosting_root = '/home/davidlukac.com/';
 $root_dev = $hosting_root . 'sub/dev/';
 $site_dev = 'sites/dev.davidlukac.com/';
 $files_dev = $root_dev . $site_dev . 'files/';
+$uri_dev = 'dev.davidlukac.com';
 
 $root_prod = $hosting_root . 'web/';
 $site_prod = 'sites/davidlukac.com/';
 $files_prod = $root_prod . $site_prod . 'files/';
+$uri_prod = 'davidlukac.com';
 
 $aliases['local'] = array(
   'parent' => '@davidlukac.dd',
@@ -28,7 +30,7 @@ $aliases['local'] = array(
 );
 
 $aliases['dev'] = array(
-  'uri' => 'dev.davidlukac.com',
+  'uri' => $uri_dev,
   'root' => $root_dev,
   'path-aliases' => array(
     '%drush' => $drush_bin,
@@ -43,7 +45,7 @@ $aliases['dev'] = array(
 );
 
 $aliases['prod'] = array(
-  'uri' => 'davidlukac.com',
+  'uri' => $uri_prod,
   'root' => $root_prod,
   'path-aliases' => array(
     '%drush' => $drush_bin,
@@ -60,16 +62,35 @@ $aliases['prod'] = array(
 /**
  * Drush alias to be used directly on Websupport.
  */
-$aliases['ws.prod'] = array(
-  'uri' => 'davidlukac.com',
-  'root' => '/home/davidlukac.com/web',
+
+/**
+ * DEVELOPMENT.
+ */
+$aliases['ws.dev'] = array(
+  'uri' => $uri_dev,
+  'root' => $root_dev,
   'path-aliases' => array(
-    '%drush' => '/home/.composer/vendor/drush/drush',
+    '%drush' => $drush_bin,
+    '%site' => $site_dev,
+  ),
+  '%site' => $site_dev,
+  '%dump-dir' => $dump_dir,
+  '%files' => $files_dev,
+);
+
+/**
+ * PRODUCTION.
+ */
+$aliases['ws.prod'] = array(
+  'uri' => $uri_prod,
+  'root' => $root_prod,
+  'path-aliases' => array(
+    '%drush' => $drush_bin,
     '%site' => $site_prod,
   ),
   '%site' => $site_prod,
-  '%dump-dir' => '~/drush.dbdumps',
-  '%files' => '/home/davidlukac.com/web/sites/davidlukac.com/files',
+  '%dump-dir' => $dump_dir,
+  '%files' => $files_prod,
 );
 
 $aliases['dl.local'] = array(
@@ -79,14 +100,10 @@ $aliases['dl.local'] = array(
 
 $aliases['dl.dev'] = array(
   'parent' => '@davidlukac.dev',
-  'uri' => 'dev.davidlukac.com',
+  'uri' => $uri_dev,
 );
 
 $aliases['dl.prod'] = array(
   'parent' => '@davidlukac.prod',
-  'uri' => 'davidlukac.dd',
-);
-
-$aliases['dl.rmt.prod'] = array(
-  'parent' => '@davidlukac.rmt.prod',
+  'uri' => $uri_prod,
 );
