@@ -15,6 +15,11 @@
     deploy-dev
 @endmacro
 
+@macro('deploy-prod')
+    fetch-secret
+    deploy-prod
+@endmacro
+
 {{-- === TASKS ============================================================ --}}
 
 @task('ping-ws', ['on' => 'ws'])
@@ -40,6 +45,33 @@
     eval \${CMD}
 
     CMD="drush @ws.dev cron"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+@endtask
+
+@task('deploy-prod', ['on' => 'ws'])
+    cd davidlukac.com/web
+
+    CMD="drush @ws.prod sql-dump --result-file --gzip"
+    echo "Running '\${CMD}'."
+    eval \${CMD}
+
+    git checkout master
+    git pull
+
+    CMD="drush @ws.prod status"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.prod updb"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.prod cc all"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
+
+    CMD="drush @ws.prod cron"
     echo "Running: '\${CMD}'."
     eval \${CMD}
 @endtask
@@ -71,7 +103,9 @@
 
 @task('fetch-secret', ['on' => 'ws'])
     cd {{ $secret_folder }}
-    echo "Fetching secret stuff in: "
+    SECRET_FOLDER=\$(pwd)
+    echo "Fetching secret stuff in: '\${SECRET_FOLDER}'."
+    pwd
     git checkout master
     git pull
 @endtask
