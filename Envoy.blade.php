@@ -19,7 +19,7 @@
 
 @task('ping-ws', ['on' => 'ws'])
     echo "Hello world from Websupport server!"
-    echo $(pwd)
+    echo \$(pwd)
 @endtask
 
 @task('deploy-dev', ['on' => 'ws'])
@@ -30,25 +30,23 @@
 @endtask
 
 @task('drush-check', ['on' => 'ws'])
+    INIT_DIR=\$(pwd)
     echo "Running Drush availability check."
-    echo "Starting folder is ${INIT_DIR}."
-    eval "pwd"
+    echo "Starting folder is \${INIT_DIR}."
 
-    cd davidlukac.com/sub/dev/
+    cd \${INIT_DIR}/davidlukac.com/sub/dev/
     echo "Drush commands in DEV:"
     drush sa
     echo '================================================================================'
     {{--drush @dl.dev status--}}
 
-    cd ${INIT_DIR}
-    cd davidlukac.com/web
+    cd \${INIT_DIR}/davidlukac.com/web
     echo "Drush commands in PROD:"
     drush sa
     echo '================================================================================'
-    local CMD="drush @dl.prod status"
-    echo "Running: '${CMD}'."
-    eval ${CMD}
-    {{--drush @dl.prod status--}}
+    CMD="drush @dl.prod status"
+    echo "Running: '\${CMD}'."
+    eval \${CMD}
 @endtask
 
 @task('temp', ['on' => 'ws'])
