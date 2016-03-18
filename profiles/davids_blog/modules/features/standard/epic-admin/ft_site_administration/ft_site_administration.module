@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FT: Site Administration feature.
+ */
+
+include_once 'ft_site_administration.features.inc';
