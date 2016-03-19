@@ -44,6 +44,7 @@ drush ${local_alias} en devel -y
 drush ${local_alias} en diff -y
 drush ${local_alias} en features -y
 drush ${local_alias} en features_diff -y
+drush ${local_alias} en ft_site_settings -y
 drush ${local_alias} en ft_site_administration -y
 drush ${local_alias} en ft_seo_settings_and_support -y
 
