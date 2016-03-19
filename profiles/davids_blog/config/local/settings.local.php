@@ -13,3 +13,9 @@ $base_url = 'http://davidlukac.dd:8083';
 
 // Setting cookie domain.
 // $cookie_domain = '.davidlukac.com';
+
+/**
+ * Google Analytics.
+ */
+// DEV value.
+$conf['googleanalytics_account'] = 'UA-32388620-2';
