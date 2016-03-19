@@ -1,6 +1,6 @@
 name = David's Blog install profile.
 description = Experimental installation profile used to build up a blog that belongs to David Lukac.
-version = 0.1.0
+version = 0.4.0
 core = 7.x
 exclusive = true
 

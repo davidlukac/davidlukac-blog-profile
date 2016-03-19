@@ -1,3 +1,13 @@
+[DavidLukac.com Installation profile - v0.4.0 (2016-03-19)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.4.0-20160319)
+--------------------------------------------------------------------------------
+- Issue #16 - Google Analytics integration.
+
+[DavidLukac.com Installation profile - v0.3.0 (2016-03-18)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.3.0-20160318)
+--------------------------------------------------------------------------------
+- Issue #12 - Set up of Admin menu and administration theme.
+- Make Drush aliases working against Websupport remotely, or directly on the
+  hosting. Aliases work for all current environments: *local*, *DEV*, *PROD*.
+
 [DavidLukac.com Installation profile - v0.2.0 (2015-10-14)](https://github.com/davidlukac/davidlukac-blog-profile/releases/tag/v0.2.0)
 --------------------------------------------------------------------------------
 - Issue #3 - Added settings handling for LIVE (http://Websupport.sk)
