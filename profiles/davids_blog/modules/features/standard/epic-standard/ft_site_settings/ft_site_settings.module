@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the FT: Site Settings feature.
+ */
+
+include_once 'ft_site_settings.features.inc';
