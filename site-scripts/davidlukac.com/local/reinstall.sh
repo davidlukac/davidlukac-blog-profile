@@ -41,8 +41,11 @@ drush ${local_alias} si davids_blog --site-name="Blog of David Lukac" --site-mai
 # @todo Backport functionality for this from Virgin.
 print_info "Enable site-specific Features."
 drush ${local_alias} en devel -y
+drush ${local_alias} en diff -y
 drush ${local_alias} en features -y
+drush ${local_alias} en features_diff -y
 drush ${local_alias} en ft_site_administration -y
+drush ${local_alias} en ft_seo_settings_and_support -y
 
 print_info "Reverting Features."
 # This is really silly, but we need to revert the Features couples of times.
