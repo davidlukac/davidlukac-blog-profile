@@ -1,0 +1,18 @@
+{
+    "name": "davidlukac/drupal_oop",
+    "description": "OOP representations of Drupal 7 entities.",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Lukac",
+            "email": "david.lukac@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "davidlukac\\drupal_oop\\": "src/"
+        }
+    }
+}

@@ -4,6 +4,8 @@
  * Code for the FT: Site Administration feature.
  */
 
+use davidlukac\drupal_oop\Theme;
+
 include_once 'ft_site_administration.features.inc';
 
 /**
@@ -18,18 +20,20 @@ function ft_site_administration_post_features_enable_feature($component) {
   // make sure the theme is enabled and it's settings are reverted afterwards,
   // so they are applied correctly.
   if ($component == 'variable') {
-    $theme_name = 'adminimal';
-    theme_enable(array($theme_name));
-    drupal_theme_rebuild();
-    features_revert(array('ft_site_administration' => array($component)));
-    watchdog("ft_site_administration", "Attempted to enable the Adminimal theme.", array(), WATCHDOG_INFO);
+    // Load our dependencies first.
+    module_load_include('php', 'drupal_oop', 'vendor/autoload');
 
-    $themes = list_themes(TRUE);
-    if (array_key_exists($theme_name, $themes)) {
-      watchdog("ft_site_administration", "Adminimal theme enabled successfully.", array(), WATCHDOG_INFO);
+    $theme_name = 'adminimal';
+    $admin_theme = new Theme($theme_name);
+    $admin_theme->enable();
+    features_revert(array('ft_site_administration' => array($component)));
+    watchdog(FTSiteAdministrationModule::getName(), "Attempted to enable the Adminimal theme.", array(), WATCHDOG_INFO);
+
+    if ($admin_theme->checkIfEnabled()) {
+      watchdog(FTSiteAdministrationModule::getName(), "Adminimal theme enabled successfully.", array(), WATCHDOG_INFO);
     }
     else {
-      watchdog("ft_site_administration", "The Adminimal theme is not present. Requested: '%req'.", array('%req' => $theme_name), WATCHDOG_ERROR);
+      watchdog(FTSiteAdministrationModule::getName(), "The Adminimal theme is not present. Requested: '%req'.", array('%req' => $theme_name), WATCHDOG_ERROR);
     }
   }
 }

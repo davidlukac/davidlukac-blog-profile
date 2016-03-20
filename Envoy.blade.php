@@ -6,6 +6,10 @@
 
 @setup
     $secret_folder = "~/davidlukac.com/secret";
+    $current_branch = shell_exec("git rev-parse --abbrev-ref HEAD");
+    if (substr($current_branch, 0, strlen("feature")) != "feature") {
+        $current_branch = "develop";
+    }
 @endsetup
 
 {{-- === MACROS =========================================================== --}}
@@ -28,9 +32,14 @@
 @endtask
 
 @task('deploy-dev', ['on' => 'ws'])
-    cd davidlukac.com/sub/dev/
-    git checkout develop
+    cd ~/davidlukac.com/sub/dev/
+    git fetch
+    git checkout {{ $current_branch }}
     git pull
+    composer install
+    cd ~/davidlukac.com/sub/dev/profiles/davids_blog/modules/custom/drupal_oop/
+    composer install
+    cd ~/davidlukac.com/sub/dev/
 
     CMD="drush @ws.dev status"
     echo "Running: '\${CMD}'."

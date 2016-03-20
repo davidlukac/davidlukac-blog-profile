@@ -4,4 +4,39 @@
  * Code for the FT: Site Settings feature.
  */
 
+use davidlukac\drupal_oop\Feature;
+use davidlukac\drupal_oop\Theme;
+
 include_once 'ft_site_settings.features.inc';
+
+/**
+ * Implements hook_post_features_enable_feature().
+ *
+ * Make sure our FE theme is enabled.
+ *
+ * @inheritdoc
+ */
+function ft_site_settings_post_features_enable_feature($component) {
+  // When we get to enabling the Strongarm variables for this Feature,
+  // make sure the theme is enabled and it's settings are reverted afterwards,
+  // so they are applied correctly.
+  if ($component == 'variable') {
+    // Load our dependencies first.
+    module_load_include('php', 'drupal_oop', 'vendor/autoload');
+
+    $theme_name = 'blogger_theme';
+    $admin_theme = new Theme($theme_name);
+    $admin_theme->enable();
+    $ft = new FTSiteSettingsModule();
+    $ft->revert($component);
+    watchdog(FTSiteSettingsModule::getName(), "Attempted to enable the Blogger theme.", array(), WATCHDOG_INFO);
+
+    if ($admin_theme->checkIfEnabled()) {
+      watchdog(FTSiteSettingsModule::getName(), "Blogger theme enabled successfully.", array(), WATCHDOG_INFO);
+    }
+    else {
+      watchdog(FTSiteSettingsModule::getName(), "The Blogger theme is not present. Requested: '%req'.", array('%req' => $theme_name), WATCHDOG_ERROR);
+    }
+  }
+
+}
