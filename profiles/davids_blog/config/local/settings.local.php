@@ -35,7 +35,7 @@ $conf['preprocess_js'] = 0;
 
 /**
  * Memcache settings.
-// */
+ */
 $memcache_storage_path = 'profiles/davids_blog/modules/contrib/memcache_storage/';
 // Move all cached data (except form cache) to memcache storage.
 $conf['cache_backends'][] = $memcache_storage_path . 'memcache_storage.inc';
