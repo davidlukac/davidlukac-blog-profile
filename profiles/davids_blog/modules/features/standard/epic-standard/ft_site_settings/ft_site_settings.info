@@ -6,6 +6,7 @@ version = 7.x-1.1
 dependencies[] = ctools
 dependencies[] = jquery_update
 dependencies[] = strongarm
+files[] = includes/FTSiteSettingsModule.php
 features[ctools][] = strongarm:strongarm:1
 features[features_api][] = api:2
 features[variable][] = jquery_update_compression_type

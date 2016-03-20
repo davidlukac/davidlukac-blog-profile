@@ -20,4 +20,4 @@ sites/*/private
 secret
 
 # Composer.
-/vendor/
+vendor
