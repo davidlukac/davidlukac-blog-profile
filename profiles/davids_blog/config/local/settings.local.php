@@ -19,3 +19,16 @@ $base_url = 'http://davidlukac.dd:8083';
  */
 // DEV value.
 $conf['googleanalytics_account'] = 'UA-32388620-2';
+
+/**
+ * Basic Drupal caching/performance settings.
+ *
+ * Force the caching to be DISABLED for local development environment.
+ */
+$conf['block_cache'] = 0;
+$conf['cache'] = 0;
+$conf['cache_lifetime'] = 0;
+$conf['page_cache_maximum_age'] = 0;
+$conf['page_compression'] = 0;
+$conf['preprocess_css'] = 0;
+$conf['preprocess_js'] = 0;
