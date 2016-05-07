@@ -19,3 +19,16 @@ $base_url = 'http://davidlukac.com';
  */
 // PROD value.
 $conf['googleanalytics_account'] = 'UA-32388620-3';
+
+/**
+ * Basic Drupal caching/performance settings.
+ *
+ * Force the caching to be ENABLED for production development environment.
+ */
+$conf['block_cache'] = 1;
+$conf['cache'] = 1;
+$conf['cache_lifetime'] = 900;
+$conf['page_cache_maximum_age'] = 32400;
+$conf['page_compression'] = 1;
+$conf['preprocess_css'] = 1;
+$conf['preprocess_js'] = 1;

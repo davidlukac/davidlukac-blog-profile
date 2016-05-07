@@ -1,0 +1,12 @@
+name = FT: Performance Settings
+description = Performance settings and dependencies.
+core = 7.x
+package = EPIC: Performance
+version = 7.x-1.1
+dependencies[] = entitycache
+dependencies[] = libraries
+dependencies[] = memcache
+dependencies[] = memcache_admin
+dependencies[] = memcache_status
+features[features_api][] = api:2
+project path = profiles/davids_blog/modules/features/standard/epic-performance

@@ -33,12 +33,17 @@
 
 @task('deploy-dev', ['on' => 'ws'])
     cd ~/davidlukac.com/sub/dev/
-    git fetch
-    git checkout {{ $current_branch }}
+    git fetch --all --prune --progress
+    git gc --prune=now
+    git remote prune origin
+    CMD="git checkout -B {{ $current_branch }} --track origin/{{ $current_branch }}"
+    echo "Switching branch: \${CMD}"
+    eval \${CMD}
+    echo "Pulling..."
     git pull
-    composer install
+    php ~/bin/composer.phar install
     cd ~/davidlukac.com/sub/dev/profiles/davids_blog/modules/custom/drupal_oop/
-    composer install
+    php ~/bin/composer.phar install
     cd ~/davidlukac.com/sub/dev/
 
     CMD="drush @ws.dev status"
@@ -85,7 +90,7 @@
     eval \${CMD}
 @endtask
 
-@task('drush-check', ['on' => 'ws'])
+@task('check-ws', ['on' => 'ws'])
     INIT_DIR=\$(pwd)
     echo "Running Drush availability check."
     echo "Starting folder is \${INIT_DIR}."
@@ -105,6 +110,12 @@
     CMD="drush @ws.prod status"
     echo "Running: '\${CMD}'."
     eval \${CMD}
+
+    echo "Checking composer."
+    cd ~
+    php ~/bin/composer.phar --version
+    php ~/bin/composer.phar self-update
+    php ~/bin/composer.phar --version
 @endtask
 
 @task('temp', ['on' => 'ws'])
