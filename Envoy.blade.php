@@ -33,8 +33,12 @@
 
 @task('deploy-dev', ['on' => 'ws'])
     cd ~/davidlukac.com/sub/dev/
-    git fetch --all --prune
-    git checkout "{{ $current_branch }}"
+    git fetch --all --prune --progress
+    git gc --prune=now
+    git remote prune origin
+    CMD="git checkout -B {{ $current_branch }} --track origin/{{ $current_branch }}"
+    echo "Switching branch: \${CMD}"
+    eval \${CMD}
     echo "Pulling..."
     git pull
     php ~/bin/composer.phar install

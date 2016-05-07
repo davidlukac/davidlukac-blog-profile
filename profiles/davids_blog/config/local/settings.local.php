@@ -36,32 +36,35 @@ $conf['preprocess_js'] = 0;
 /**
  * Memcache settings.
  */
-$memcache_storage_path = 'profiles/davids_blog/modules/contrib/memcache_storage/';
+// Indicator whether we need special prefix handling for broken memcache lib.
+$memcache_broken_lib = FALSE;
+$memcache_module_path = 'profiles/davids_blog/modules/contrib/memcache/';
 // Move all cached data (except form cache) to memcache storage.
-$conf['cache_backends'][] = $memcache_storage_path . 'memcache_storage.inc';
-$conf['cache_default_class'] = 'MemcacheStorage';
+$conf['cache_backends'][] = $memcache_module_path . 'memcache.inc';
+$conf['cache_default_class'] = 'MemCacheDrupal';
 $conf['cache_class_cache_form'] = 'DrupalDatabaseCache';
 $conf['cache_class_cache_update'] = 'DrupalDatabaseCache';
-
-// Advanced usage of Drupal page cache.
-$conf['cache_backends'][] = $memcache_storage_path . 'memcache_storage.page_cache.inc';
-$conf['cache_class_cache_page'] = 'MemcacheStoragePageCache';
 
 // Do not connect to the database when serving cached page for anonymous users.
 $conf['page_cache_invoke_hooks'] = FALSE;
 $conf['page_cache_without_database'] = TRUE;
 
-// Open persistent memcached connection.
-$conf['memcache_storage_persistent_connection'] = TRUE;
-
 // Set unique prefix for our site.
-$conf['memcache_storage_key_prefix'] = 'davidllukac-com-local';
+$conf['memcache_key_prefix'] = 'davidlukac-com-local';
 
 // Move storage for lock system into memcached.
-$conf['lock_inc'] = $memcache_storage_path . 'includes/lock.inc';
+$conf['lock_inc'] = $memcache_module_path . 'memcache-lock.inc';
 
 // Move storage for sessions into memcached.
-$conf['session_inc'] = $memcache_storage_path . 'includes/session.inc';
+$conf['session_inc'] = $memcache_module_path . 'unstable/memcache-session.inc';
+
+// Stampede protection.
+// Stampede protection seems to be causing:
+// "WD memcache: Bootstrap failed in lockInit(),
+// lock_acquire() is not available. (phase:3)".
+// @see https://www.drupal.org/node/2599126
+// @see https://www.drupal.org/node/2376391
+$conf['memcache_stampede_protection'] = FALSE;
 
 // Set correct memcache server.
 $conf['memcache_servers'] = array(
