@@ -394,6 +394,11 @@ function dmemcache_get_multi($keys, $bin = 'cache', $mc = NULL) {
 
   if ($collect_stats) {
     foreach ($multi_stats as $key => $value) {
+      // If we are using the broken version of memcache library, we need to
+      // prepend the key prefix to get correct statistics for get/set_multiple.
+      if (variable_get('memcache_broken_lib', FALSE)) {
+        $key = variable_get('memcache_key_prefix', '') . $key;
+      }
       $multi_stats[$key] = isset($results[$key]) ? TRUE : FALSE;
     }
   }
@@ -405,6 +410,15 @@ function dmemcache_get_multi($keys, $bin = 'cache', $mc = NULL) {
     // This is a multi-part value.
     if (is_object($value) && !empty($value->multi_part_data)) {
       $value = _dmemcache_get_pieces($value->data, $value->cid, $bin, $mc);
+    }
+    // If we are using the broken version of memcache library, we need to remove
+    // the prefix from the stored key, because it's there twice, by mistake.
+    // Otherwise get/set_multiple operation doesn't work correctly.
+    if (variable_get('memcache_broken_lib', FALSE)) {
+      $prefix = variable_get('memcache_key_prefix', '');
+      if (substr($key, 0, strlen($prefix)) == $prefix) {
+        $key = substr($key, strlen($prefix));
+      }
     }
     $cid_results[$cid_lookup[$key]] = $value;
   }
