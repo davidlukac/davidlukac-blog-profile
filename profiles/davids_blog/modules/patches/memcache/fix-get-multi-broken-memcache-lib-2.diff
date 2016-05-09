@@ -1,0 +1,15 @@
+diff --git a/dmemcache.inc b/dmemcache.inc
+index e279144..5c92432 100644
+--- a/dmemcache.inc
++++ b/dmemcache.inc
+@@ -397,9 +397,9 @@ function dmemcache_get_multi($keys, $bin = 'cache', $mc = NULL) {
+       // If we are using the broken version of memcache library, we need to
+       // prepend the key prefix to get correct statistics for get/set_multiple.
+       if (variable_get('memcache_broken_lib', FALSE)) {
+-        $key = variable_get('memcache_key_prefix', '') . $key;
++        $result_key = variable_get('memcache_key_prefix', '') . $key;
+       }
+-      $multi_stats[$key] = isset($results[$key]) ? TRUE : FALSE;
++      $multi_stats[$key] = isset($results[$result_key]) ? TRUE : FALSE;
+     }
+   }
