@@ -42,7 +42,7 @@ $conf['googleanalytics_account'] = 'UA-32388620-2';
  * Memcache settings.
  */
 // Indicator whether we need special prefix handling for broken memcache lib.
-$memcache_broken_lib = TRUE;
+$conf['memcache_broken_lib'] = TRUE;
 $memcache_module_path = 'profiles/davids_blog/modules/contrib/memcache/';
 // Move all cached data (except form cache) to memcache storage.
 $conf['cache_backends'][] = $memcache_module_path . 'memcache.inc';
