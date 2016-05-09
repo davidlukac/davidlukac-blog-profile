@@ -37,7 +37,7 @@ $conf['preprocess_js'] = 0;
  * Memcache settings.
  */
 // Indicator whether we need special prefix handling for broken memcache lib.
-$memcache_broken_lib = FALSE;
+$conf['memcache_broken_lib'] = FALSE;
 $memcache_module_path = 'profiles/davids_blog/modules/contrib/memcache/';
 // Move all cached data (except form cache) to memcache storage.
 $conf['cache_backends'][] = $memcache_module_path . 'memcache.inc';

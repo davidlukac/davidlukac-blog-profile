@@ -1,20 +1,20 @@
-diff --git a/dmemcache.inc b/dmemcache.inc
-index b19c9c2..e279144 100644
---- a/dmemcache.inc
-+++ b/dmemcache.inc
-@@ -394,6 +394,11 @@ function dmemcache_get_multi($keys, $bin = 'cache', $mc = NULL) {
-
+--- patches/memcache/dmemcache.inc	2016-05-09 15:30:35.000000000 +0200
++++ contrib/memcache/dmemcache.inc	2016-05-09 15:30:43.000000000 +0200
+@@ -394,7 +394,12 @@
+ 
    if ($collect_stats) {
      foreach ($multi_stats as $key => $value) {
+-      $multi_stats[$key] = isset($results[$key]) ? TRUE : FALSE;
 +      // If we are using the broken version of memcache library, we need to
 +      // prepend the key prefix to get correct statistics for get/set_multiple.
 +      if (variable_get('memcache_broken_lib', FALSE)) {
-+        $key = variable_get('memcache_key_prefix', '') . $key;
++        $result_key = variable_get('memcache_key_prefix', '') . $key;
 +      }
-       $multi_stats[$key] = isset($results[$key]) ? TRUE : FALSE;
++      $multi_stats[$key] = isset($results[$result_key]) ? TRUE : FALSE;
      }
    }
-@@ -406,6 +411,15 @@ function dmemcache_get_multi($keys, $bin = 'cache', $mc = NULL) {
+ 
+@@ -406,6 +411,15 @@
      if (is_object($value) && !empty($value->multi_part_data)) {
        $value = _dmemcache_get_pieces($value->data, $value->cid, $bin, $mc);
      }
@@ -29,4 +29,4 @@ index b19c9c2..e279144 100644
 +    }
      $cid_results[$cid_lookup[$key]] = $value;
    }
-
+ 
